@@ -67,7 +67,6 @@ public class CLI {
             if (running) {
                 System.out.println("\nНажмите Enter для продолжения...");
                 scanner.nextLine();
-                clear();
             }
         }
     }
@@ -94,6 +93,7 @@ public class CLI {
 
         int positionsCount = readInt("Сколько позиций добавить? ");
         for (int i = 0; i < positionsCount; i++) {
+            clear();
             System.out.println("Позиция " + (i + 1));
 
             String name = readNonEmptyString("Название товара: ");
@@ -103,7 +103,7 @@ public class CLI {
             OrderPosition position = service.createPosition(name, cost, count);
             order.addPosition(position);
         }
-
+        clear();
         System.out.println("Заказ #" + order.getId() + " создан.");
     }
 
@@ -122,6 +122,7 @@ public class CLI {
 
         int orderId = readInt("Введите номер заказа для подробностей (0 - назад): ");
         if (orderId != 0) {
+            clear();
             System.out.println(service.findOrder(orderId));
         }
     }
@@ -137,7 +138,7 @@ public class CLI {
 
         int methodOption = readInt("Выберите способ: ");
         service.selectDeliveryMethod(orderId, methodOption);
-
+        clear();
         if (methodOption == 1 || methodOption == 2)
             assignCourier(service, orderId);
 
@@ -216,7 +217,7 @@ public class CLI {
     private double readDouble(String prompt) {
         while (true) {
             System.out.print(prompt);
-            String line = scanner.nextLine().trim();
+            String line = scanner.nextLine().trim().replace(",", ".");
             try {
                 return Double.parseDouble(line);
             } catch (NumberFormatException e) {
