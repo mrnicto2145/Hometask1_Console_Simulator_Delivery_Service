@@ -19,4 +19,8 @@ public class Address {
     public double getX() { return X;}
     public double getY() { return Y;}
     public double getRegionFactor() { return regionFactor;}
+
+    public String toString() {
+        return String.format("(x=%.2f, y=%.2f, регион=%.2f)", X, Y, regionFactor);
+    }
 }
