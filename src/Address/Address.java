@@ -1,7 +1,7 @@
 package Address;
 
 public class Address {
-    double X, Y, regionFactor;
+    private final double X, Y, regionFactor;
 
     public Address(double X,double Y,double regionFactor){
         this.X = X;
@@ -15,4 +15,8 @@ public class Address {
         double regionDiffSquare = Math.pow(this.regionFactor - destinAddress.regionFactor, 2);
         return Math.sqrt(dxSquare + dySquare + regionDiffSquare);
     }
+
+    public double getX() { return X;}
+    public double getY() { return Y;}
+    public double getRegionFactor() { return regionFactor;}
 }
