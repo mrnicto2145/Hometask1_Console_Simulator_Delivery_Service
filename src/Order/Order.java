@@ -51,14 +51,6 @@ public class Order {
     }
 
     public void assignCourier(Courier courier) throws IllegalStateException{
-        requireDeliveryMethod();
-        if (!deliveryMethod.requiresCourier()) {
-            throw new IllegalStateException("Для самовывоза курьер не назначается");
-        }
-        if (status != OrderStatus.DELIVERY_METHOD_SELECTED) {
-            throw new IllegalStateException("Курьера можно назначить только после выбора способа доставки");
-        }
-
         this.courier = courier;
         this.status = OrderStatus.COURIER_ASSIGNED;
     }
