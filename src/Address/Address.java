@@ -9,7 +9,7 @@ public class Address {
         this.regionFactor = regionFactor;
     }
 
-    public double Distance(Address destinAddress){
+    public double distance(Address destinAddress){
         double dxSquare = Math.pow(this.X - destinAddress.X, 2);
         double dySquare = Math.pow(this.Y - destinAddress.Y, 2);
         double regionDiffSquare = Math.pow(this.regionFactor - destinAddress.regionFactor, 2);
