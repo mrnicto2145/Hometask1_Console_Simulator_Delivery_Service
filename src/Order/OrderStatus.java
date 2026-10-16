@@ -13,6 +13,17 @@ public enum OrderStatus {
     CANCELLED("Отменён");
 
     private final String title;
+    public static final Map<OrderStatus, Set<OrderStatus>> ALLOWED_TRANSITIONS = Map.of(
+    OrderStatus.NEW, Set.of(OrderStatus.DELIVERY_METHOD_SELECTED, OrderStatus.CANCELLED),
+    OrderStatus.DELIVERY_METHOD_SELECTED, Set.of(
+        OrderStatus.COURIER_ASSIGNED,
+        OrderStatus.READY_FOR_PICKUP,
+        OrderStatus.CANCELLED
+    ),
+    OrderStatus.COURIER_ASSIGNED, Set.of(OrderStatus.IN_TRANSIT, OrderStatus.CANCELLED),
+    OrderStatus.READY_FOR_PICKUP, Set.of(OrderStatus.DELIVERED, OrderStatus.CANCELLED),
+    OrderStatus.IN_TRANSIT, Set.of(OrderStatus.DELIVERED, OrderStatus.CANCELLED)
+    );
 
     OrderStatus(String title) {
         this.title = title;
